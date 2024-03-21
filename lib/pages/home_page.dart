@@ -12,7 +12,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   //this selected index to track the bottom nav bar
   int _selectedIndex = 0;
 
@@ -25,7 +24,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   //pages to display
-  final List <Widget> _pages = [
+  final List<Widget> _pages = [
     //shop page
     const ShopPage(),
 
@@ -37,7 +36,79 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: MyBottomNavBar(
-        onTabChange:(index) => navigateBottomBar(index),
+        onTabChange: (index) => navigateBottomBar(index),
+      ),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: const Padding(
+              padding: EdgeInsets.only(left: 14),
+              child: Icon(
+                Icons.menu,
+                color: Colors.black,
+              ),
+            ),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+          ),
+        ),
+      ),
+      drawer: Drawer(
+        backgroundColor: Colors.grey[500],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              children: [
+                //logo
+                DrawerHeader(
+                    child: Image.asset('lib/images/logo_transparent.png')),
+
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Divider(
+                    color: Colors.black,
+                  ),
+                ),
+
+                //other pages
+                const Padding(
+                  padding: EdgeInsets.only(left: 25),
+                  child: ListTile(
+                    leading: Icon(Icons.home),
+                    title: Text(
+                      'Home',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 25),
+                  child: ListTile(
+                    leading: Icon(Icons.info),
+                    title: Text(
+                      'About',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 25, bottom: 25),
+              child: ListTile(
+                leading: Icon(Icons.logout),
+                title: Text(
+                  'Logout',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
       body: _pages[_selectedIndex],
     );
