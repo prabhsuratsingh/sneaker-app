@@ -1,9 +1,11 @@
 import 'package:ecommerce_ui/models/shoe.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class ShoeTile extends StatelessWidget {
   Shoe shoe;
-  ShoeTile({super.key, required this.shoe});
+  void Function()? onTap;
+  ShoeTile({super.key, required this.shoe,});
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +29,14 @@ class ShoeTile extends StatelessWidget {
           ),
           
           //shoe description
-          Text(shoe.description),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text(shoe.description),
+          ),
 
           //shoe price
           Padding(
-            padding: const EdgeInsets.only(left: 25),
+            padding: const EdgeInsets.only(left: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,16 +60,19 @@ class ShoeTile extends StatelessWidget {
                   ],
                 ),
                 //plus button
-                Container(
-                  padding:const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(12),
-                      bottomRight: Radius.circular(12)
+                GestureDetector(
+                  onTap: onTap ,
+                  child: Container(
+                    padding:const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        bottomRight: Radius.circular(12)
+                      ),
                     ),
+                    child: const Icon(Icons.add)
                   ),
-                  child: const Icon(Icons.add)
                 ),
               ],
             ),

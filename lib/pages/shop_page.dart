@@ -1,6 +1,8 @@
 import 'package:ecommerce_ui/components/shoe_tile.dart';
+import 'package:ecommerce_ui/models/cart.dart';
 import 'package:ecommerce_ui/models/shoe.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
@@ -10,85 +12,87 @@ class ShopPage extends StatefulWidget {
 }
 
 class _ShopPageState extends State<ShopPage> {
+
+  //add shoe to cart function
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        //search bar
-        Container(
-          padding: const EdgeInsets.all(16),
-          margin: const EdgeInsets.symmetric(horizontal: 25),
-          decoration: BoxDecoration(
-            color: Colors.grey[300],
-            borderRadius: BorderRadius.circular(12), 
+    return Consumer<Cart>(
+      builder: (context, value, child) => Column (
+        children: [
+          //search bar
+          Container(
+            padding: const EdgeInsets.all(16),
+            margin: const EdgeInsets.symmetric(horizontal: 25),
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.circular(12), 
+            ),
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween, 
+              children: [
+                Text('Search'),
+                Icon(Icons.search)
+              ],
+            ),
           ),
-          child: const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween, 
-            children: [
-              Text('Search'),
-              Icon(Icons.search)
-            ],
+
+          //message
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 10),
+            child: Text('Purely desi......and Indian'),
           ),
-        ),
 
-        //message
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 10),
-          child: Text('Purely desi......and Indian'),
-        ),
-
-        //hot picks
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 25),
-          child:  Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                'Hot Picks 🔥',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24,
+          //hot picks
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 25),
+            child:  Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  'Hot Picks 🔥',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                  ),
                 ),
-              ),
-              Text(
-                'See all',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blue,
-                ),
-              )
-            ],
+                Text(
+                  'See all',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue,
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
-        const SizedBox(height: 10,),
+          const SizedBox(height: 10,),
 
-        Expanded(
-          child: ListView.builder(
-            itemCount: 4,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              //create a shoe
-              Shoe shoe = Shoe(
-                name: 'Shoe1',
-                price: '2000',
-                description: 'cool shoe',
-                imagePath: 'lib/images/_1a3c1b3c-7827-40ec-9af5-ba6a340ed5be.jpg',
-              );
-              return ShoeTile(
-                shoe: shoe,
-              );
-            },
+          //list of shoes for sale
+          Expanded(
+            child: ListView.builder(
+              itemCount: 4,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                //get a shoe from shop list
+                Shoe shoe = value.getShoeList()[index];
+                return ShoeTile(
+                  shoe: shoe,
+                  //onTap: () => addShoeToCart(individualShoe),
+                );
+              },
+            ),
           ),
-        ),
 
-        const Padding(
-          padding: EdgeInsets.only(left: 25.0, top: 25, right: 25),
-          child: Divider(
-            color: Colors.white,
-          ),
-        )
-      ],
+          const Padding(
+            padding: EdgeInsets.only(left: 25.0, top: 25, right: 25),
+            child: Divider(
+              color: Colors.white,
+            ),
+          )
+        ],
+      ),
     );
   }
 }
