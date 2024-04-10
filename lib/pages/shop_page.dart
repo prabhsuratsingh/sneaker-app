@@ -32,8 +32,8 @@ class _ShopPageState extends State<ShopPage> {
         ),
 
         //message
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 10),
           child: Text('Purely desi......and Indian'),
         ),
 
