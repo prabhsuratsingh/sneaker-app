@@ -1,16 +1,15 @@
-# ecommerce_ui
+![alt text](lib/images/logo_transparent.png)
 
-A new Flutter project.
+# SNEAKR-TOWN
 
-## Getting Started
+## The funkiest and craziest sneakers you will ever find🤪😜!!
 
-This project is a starting point for a Flutter application.
+Combines Indian-ism with craziness to bring some freshness  
+and some colorfulness to this industry filled with those boring  
+white sneaks😉😉
 
-A few resources to get you started if this is your first Flutter project:
+Stay tuned for more designs.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+(Dont mind my horrible UI. It is still under development 😅🙃💀☠️)
